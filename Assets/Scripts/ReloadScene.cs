@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ReloadScene : MonoBehaviour
 {
-    public void OnClick()
-    {
-        ReloadSceneFunc();  // ログを出力
+    public CustomButton button;
+    void Update(){
+        button.onClickCallback = ()=> {  
+            ReloadSceneFunc();  
+        };  
     }
     public void ReloadSceneFunc()
         {
