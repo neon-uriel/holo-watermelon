@@ -1,33 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     private Vector2 t_pos;
     public Vector2 spawn_pos;
     Vector3 mousePos, worldPos;
-
-    public GameObject[] fruitObjects = new GameObject[10]; 
-    [SerializeField]GameObject gameOverUI;
+    public int sumPoints;
+    public GameObject[] fruitObjects = new GameObject[10];
+    [SerializeField] GameObject gameOverUI;
+    public TextMeshProUGUI PointsText;
     private bool isGameOver = false;
+    public int nextFruit;
+    private GameObject currentFruits;
     void Start()
     {
-        SpawnFluits();
+        sumPoints = 0;
+        SpawnFluits(0);
+        nextFruit = Random.Range(0, 3);
     }
     void Update()
     {
+        if (currentFruits == null)
+        {
+            SpawnFluits(nextFruit);
+            nextFruit = Random.Range(0, 5);
+        }
+        PointsText.text = "" + sumPoints;
         isGameOver = gameOverUI.activeSelf;
-        if (Input.GetMouseButtonUp(0)){
+        if (Input.GetMouseButtonUp(0))
+        {
             StartCoroutine(DelayCoroutine());
         }
     }
-    void SpawnFluits(){
-        if (!isGameOver){
+    void SpawnFluits(int fruit)
+    {
+        if (!isGameOver)
+        {
             t_pos = GetMouseWorldPos();
-            Vector2 spPos = t_pos * new Vector2(1.0f,0.0f) + spawn_pos;
-            int rnd = Random.Range(0, 4);
-            Instantiate(fruitObjects[rnd], spPos, Quaternion.identity);
+            Vector2 spPos = t_pos * new Vector2(1.0f, 0.0f) + spawn_pos;
+            currentFruits = Instantiate(fruitObjects[fruit], spPos, Quaternion.identity);
         }
     }
     private Vector2 GetMouseWorldPos()
@@ -39,6 +54,7 @@ public class GameManager : MonoBehaviour
     {
         // 3秒間待つ
         yield return new WaitForSeconds(0.5f);
-        SpawnFluits();
+        SpawnFluits(nextFruit);
+        nextFruit = Random.Range(0, 5);
     }
 }
