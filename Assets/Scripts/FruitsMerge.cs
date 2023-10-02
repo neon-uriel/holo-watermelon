@@ -36,11 +36,12 @@ public class FruitsMerge : MonoBehaviour
                 Debug.Log(gm.sumPoints);
                 Instantiate(particleObject, col.transform.position, Quaternion.identity); //パーティクル用ゲームオブジェクト生成
                 // 新しいマージされたオブジェクトを生成します。
-                GameObject mergedObject = Instantiate(nextFruitObjects, col.transform.position, Quaternion.identity);
-                Debug.Log(mergedObject);
-                mergedObject.GetComponent<Animation>().Play();
                 Vector2 pre = (transform.position + col.transform.position) / 2f;
+                GameObject mergedObject = Instantiate(nextFruitObjects, pre, Quaternion.identity);
                 Destroy(mergedObject.transform.GetComponent<FruitsMove>());
+                //Debug.Log(mergedObject);
+                mergedObject.GetComponent<Animation>().Play();
+                mergedObject.GetComponent<Rigidbody2D>().simulated = true;
                 mergedObject.GetComponent<AudioSource>().Play();
                 once = 0;
             }

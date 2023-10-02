@@ -12,10 +12,12 @@ public class GameManager : MonoBehaviour
     public int sumPoints;
     public GameObject[] fruitObjects = new GameObject[10];
     [SerializeField] GameObject gameOverUI;
+    [SerializeField] GameObject scoreUI;
     public TextMeshProUGUI PointsText;
     private bool isGameOver = false;
     public int nextFruit;
     private GameObject currentFruits;
+    private int waiting = 0;
     //private int durCoroutine = 0;
     void Start()
     {
@@ -25,6 +27,9 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        if(isGameOver){
+            Destroy(scoreUI);
+        }
         if (currentFruits == null)
         {
             SpawnFluits(nextFruit);
@@ -32,11 +37,13 @@ public class GameManager : MonoBehaviour
         }
         PointsText.text = "" + sumPoints;
         isGameOver = gameOverUI.activeSelf;
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && waiting == 0 && !isGameOver)
         {   
+            waiting++;
             //StartCoroutine(DelayCoroutine());
-            SpawnFluits(nextFruit);
-            nextFruit = Random.Range(0, 5);
+            // SpawnFluits(nextFruit);
+            // nextFruit = Random.Range(0, 5);
+            StartCoroutine(DelayCoroutine());
         }
     }
     void SpawnFluits(int fruit)
@@ -53,15 +60,11 @@ public class GameManager : MonoBehaviour
         Vector2 mousePos = Input.mousePosition;
         return Camera.main.ScreenToWorldPoint(mousePos);
     }
-    // private IEnumerator DelayCoroutine()
-    // {
-    //     // 3秒間待つ
-    //     durCoroutine += 1;
-    //     yield return new WaitForSeconds(1f);
-    //     if (durCoroutine == 1){
-    //         SpawnFluits(nextFruit);
-    //         nextFruit = Random.Range(0, 5);
-    //     }
-    //     durCoroutine = 0;
-    // }
+    private IEnumerator DelayCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SpawnFluits(nextFruit);
+        nextFruit = Random.Range(0, 5);
+        waiting = 0;
+    }
 }

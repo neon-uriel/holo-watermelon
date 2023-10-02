@@ -37,7 +37,6 @@ public class FruitsMove : MonoBehaviour
                 targetPos = new Vector2(adjust * -1 + fruitRad, 0f) + spawn_pos;
             }
             transform.position = targetPos;
-            rd.simulated = false;
         }
         if (Input.GetMouseButtonUp(0))
         {

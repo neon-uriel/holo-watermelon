@@ -321,7 +321,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.12941177, g: 0.24313727, b: 0.25882354, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -878,6 +878,7 @@ MonoBehaviour:
   - {fileID: 736759924341072809, guid: 241a27586d6849642b4fa2d053f0ba2a, type: 3}
   - {fileID: 3831681704650708774, guid: cf72795670b99c846b8ed184fea6aaa8, type: 3}
   gameOverUI: {fileID: 189554106}
+  scoreUI: {fileID: 1524369334}
   PointsText: {fileID: 1255243024}
   nextFruit: 0
 --- !u!4 &1009107736
