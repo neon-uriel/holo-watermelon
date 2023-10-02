@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI PointsText;
     private bool isGameOver = false;
     public int nextFruit;
+    private int waitin = 0;
     private GameObject currentFruits;
     void Start()
     {
@@ -31,8 +32,9 @@ public class GameManager : MonoBehaviour
         }
         PointsText.text = "" + sumPoints;
         isGameOver = gameOverUI.activeSelf;
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && waitin == 0)
         {
+            waitin++;
             StartCoroutine(DelayCoroutine());
         }
     }
@@ -56,5 +58,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         SpawnFluits(nextFruit);
         nextFruit = Random.Range(0, 5);
+        waitin = 0;
     }
 }

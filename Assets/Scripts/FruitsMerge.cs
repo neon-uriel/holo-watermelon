@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class FruitsMerge : MonoBehaviour
 {
-    //public Rigidbody2D rd;
     private string myTagName;
     public GameObject nextFruitObjects;
     public GameObject particleObject;
@@ -39,6 +38,7 @@ public class FruitsMerge : MonoBehaviour
                 GameObject mergedObject = Instantiate(nextFruitObjects, col.transform.position, Quaternion.identity);
                 Debug.Log(mergedObject);
                 mergedObject.GetComponent<Animation>().Play();
+                mergedObject.GetComponent<Rigidbody2D>().simulated = true;
                 Vector2 pre = (transform.position + col.transform.position) / 2f;
                 Destroy(mergedObject.transform.GetComponent<FruitsMove>());
                 mergedObject.GetComponent<AudioSource>().Play();
