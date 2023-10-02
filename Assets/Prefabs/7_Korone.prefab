@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rd: {fileID: 4118330751302519923}
-  gameOverUI: {fileID: 0}
   isClick: 0
 --- !u!114 &160174575280574310
 MonoBehaviour:
@@ -195,7 +194,7 @@ Animation:
   - {fileID: 7400000, guid: 03398fa5acde82e4fac5f700d53d4af2, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
+  m_AnimatePhysics: 1
   m_CullingType: 0
 --- !u!82 &6261076518789403290
 AudioSource:

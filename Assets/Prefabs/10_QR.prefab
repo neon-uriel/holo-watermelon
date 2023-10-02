@@ -179,7 +179,7 @@ Animation:
   - {fileID: 7400000, guid: 03398fa5acde82e4fac5f700d53d4af2, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
+  m_AnimatePhysics: 1
   m_CullingType: 0
 --- !u!82 &-2509933116560403232
 AudioSource:

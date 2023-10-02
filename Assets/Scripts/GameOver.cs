@@ -24,7 +24,7 @@ public class GameOver : MonoBehaviour
         }
     }
     private IEnumerator DelayCoroutine(){
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         isStillTriggering = true;
     }
 }

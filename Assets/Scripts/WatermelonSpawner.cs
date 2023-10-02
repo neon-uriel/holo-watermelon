@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private bool isGameOver = false;
     public int nextFruit;
     private GameObject currentFruits;
+    //private int durCoroutine = 0;
     void Start()
     {
         sumPoints = 0;
@@ -32,8 +33,10 @@ public class GameManager : MonoBehaviour
         PointsText.text = "" + sumPoints;
         isGameOver = gameOverUI.activeSelf;
         if (Input.GetMouseButtonUp(0))
-        {
-            StartCoroutine(DelayCoroutine());
+        {   
+            //StartCoroutine(DelayCoroutine());
+            SpawnFluits(nextFruit);
+            nextFruit = Random.Range(0, 5);
         }
     }
     void SpawnFluits(int fruit)
@@ -50,11 +53,15 @@ public class GameManager : MonoBehaviour
         Vector2 mousePos = Input.mousePosition;
         return Camera.main.ScreenToWorldPoint(mousePos);
     }
-    private IEnumerator DelayCoroutine()
-    {
-        // 3秒間待つ
-        yield return new WaitForSeconds(0.5f);
-        SpawnFluits(nextFruit);
-        nextFruit = Random.Range(0, 5);
-    }
+    // private IEnumerator DelayCoroutine()
+    // {
+    //     // 3秒間待つ
+    //     durCoroutine += 1;
+    //     yield return new WaitForSeconds(1f);
+    //     if (durCoroutine == 1){
+    //         SpawnFluits(nextFruit);
+    //         nextFruit = Random.Range(0, 5);
+    //     }
+    //     durCoroutine = 0;
+    // }
 }
